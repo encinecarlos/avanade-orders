@@ -17,7 +17,7 @@ namespace orders.Api.Domain.Services
             IOptions<MongodbSettings> config)
         {
             Logger = logger;
-            var mongoUrl = new MongoUrl(config.Value.Connection);
+            var mongoUrl = new MongoUrl(config.Value.ConnectionString);
             var collectionName = typeof(T).Name;
 
             var mongoSettings = MongoClientSettings.FromUrl(mongoUrl);
@@ -38,10 +38,10 @@ namespace orders.Api.Domain.Services
             return await (await MongoCollection.FindAsync(predicate)).FirstOrDefaultAsync();
         }
 
-        public async Task InsertAsync(T entity, CancellationToken cancellationToken)
+        public async Task InsertAsync(T entity)
         {
             Logger.LogInformation("Insert data on collection");
-            await MongoCollection.InsertOneAsync(entity, cancellationToken);
+            await MongoCollection.InsertOneAsync(entity);
         }
 
         public async Task RemoveAsync(TId id)
