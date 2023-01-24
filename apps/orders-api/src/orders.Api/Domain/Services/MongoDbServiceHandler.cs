@@ -17,7 +17,7 @@ namespace orders.Api.Domain.Services
             IOptions<MongodbSettings> config)
         {
             Logger = logger;
-            var mongoUrl = new MongoUrl(config.Value.Connection);
+            var mongoUrl = new MongoUrl(config.Value.ConnectionString);
             var collectionName = typeof(T).Name;
 
             var mongoSettings = MongoClientSettings.FromUrl(mongoUrl);

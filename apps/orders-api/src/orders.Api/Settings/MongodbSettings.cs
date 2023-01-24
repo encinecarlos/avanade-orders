@@ -7,7 +7,7 @@ namespace orders.Api.Settings
 {
     public class MongodbSettings
     {
-        public string Connection { get; set; }
+        public string ConnectionString { get; set; }
         public string Database { get; set; }
     }
 }
