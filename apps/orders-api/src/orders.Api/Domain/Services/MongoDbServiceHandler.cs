@@ -38,10 +38,10 @@ namespace orders.Api.Domain.Services
             return await (await MongoCollection.FindAsync(predicate)).FirstOrDefaultAsync();
         }
 
-        public async Task InsertAsync(T entity, CancellationToken cancellationToken)
+        public async Task InsertAsync(T entity)
         {
             Logger.LogInformation("Insert data on collection");
-            await MongoCollection.InsertOneAsync(entity, cancellationToken);
+            await MongoCollection.InsertOneAsync(entity);
         }
 
         public async Task RemoveAsync(TId id)
