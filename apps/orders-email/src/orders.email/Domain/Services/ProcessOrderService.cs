@@ -8,12 +8,14 @@ namespace orders.email.Domain.Services
         private ILogger<ProcessOrderService> Logger { get; }
         private IOrderRepository OrderRepository { get; }
         private IEventhandlerService EventService { get; }
+        private IMessageServicehandler EmailHandler { get; }
 
-        public ProcessOrderService(ILogger<ProcessOrderService> logger, IEventhandlerService eventService, IOrderRepository orderRepository)
+        public ProcessOrderService(ILogger<ProcessOrderService> logger, IEventhandlerService eventService, IOrderRepository orderRepository, IMessageServicehandler emailHandler)
         {
             Logger = logger;
             EventService = eventService;
             OrderRepository = orderRepository;
+            EmailHandler = emailHandler;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -30,7 +32,10 @@ namespace orders.email.Domain.Services
 
                     var orderResult = await OrderRepository.getOrderByOrderId(message.OrderId);
 
-                    Logger.LogInformation($"Message received: {orderResult.OrderId}");
+                    Logger.LogInformation($"Order received from database: {orderResult.OrderId}");
+
+                    await EmailHandler.SendMessage(orderResult);
+                    Logger.LogInformation("Proccess completed!");
                 }
             }
             catch (Exception ex)
