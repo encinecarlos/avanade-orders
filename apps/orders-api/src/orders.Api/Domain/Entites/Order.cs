@@ -1,4 +1,5 @@
 using orders.Api.Domain.valueObject;
+using orders.E.Domain.valueObject;
 
 namespace orders.Api.Domain.Entites
 {

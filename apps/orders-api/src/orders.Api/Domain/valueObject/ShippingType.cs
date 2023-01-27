@@ -1,4 +1,4 @@
-namespace orders.Api.Domain.valueObject
+namespace orders.E.Domain.valueObject
 {
     public enum ShippingType
     {
