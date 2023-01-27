@@ -1,5 +1,6 @@
 using orders.Api.Domain.Entites;
 using orders.Api.Domain.valueObject;
+using orders.E.Domain.valueObject;
 
 namespace orders.Api.Application.Dto
 {

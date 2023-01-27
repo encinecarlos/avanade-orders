@@ -1,7 +1,6 @@
-using orders.Api.Domain.valueObject;
-using orders.E.Domain.valueObject;
+using orders.email.Domain.valueObject;
 
-namespace orders.Api.Domain.Entites
+namespace orders.email.Domain.Entities
 {
     public class Order : BaseEntity<string>
     {
